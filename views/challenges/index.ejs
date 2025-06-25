@@ -1,0 +1,43 @@
+<h2>My Challenges</h2>
+
+<p>
+  <a href="/challenges/new">+ New Challenge</a>
+</p>
+
+<form method="GET" action="/challenges">
+  <label>
+    Show:
+    <select name="filter" id="filter-select">
+      <option value="all" <%= filter === 'all' ? 'selected' : '' %>>All</option>
+      <option value="active" <%= filter === 'active' ? 'selected' : '' %>>Active only</option>
+    </select>
+  </label>
+  <button type="submit">Apply</button>
+</form>
+
+<hr />
+
+<ul>
+  <% challenges.forEach(c => { %>
+    <li>
+      <a href="/challenges/<%= c._id %>">
+        <strong><%= c.title %></strong>
+        <% if (c.totalProgress >= 100) { %>
+          <span style="color: green;">✔️ Completed</span>
+        <% } %>
+      </a><br />
+
+      <small><%= c.startDate.toDateString() %> — <%= c.endDate.toDateString() %></small><br />
+
+      <% if (c.isPublic) { %>
+        <em>🌐 Public</em><br />
+      <% } %>
+
+      <small>Progress: <%= c.totalProgress %>%</small>
+    </li>
+  <% }) %>
+</ul>
+
+<% if (challenges.length === 0) { %>
+  <p>No challenges yet.</p>
+<% } %>
