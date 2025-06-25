@@ -1,0 +1,71 @@
+<h2><%= challenge.title %></h2>
+
+<p><strong>Dates:</strong> <%= challenge.startDate.toDateString() %> — <%= challenge.endDate.toDateString() %></p>
+<% if (challenge.description) { %>
+  <p><strong>Description:</strong> <%= challenge.description %></p>
+<% } %>
+<% if (challenge.isPublic) { %>
+  <p><em>🌐 This challenge is public</em></p>
+<% } %>
+
+<hr/>
+
+<h3>Log Progress</h3>
+
+<form action="/entries/<%= challenge._id %>" method="POST">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <label>Note:<br/>
+    <textarea name="note"></textarea>
+  </label><br/>
+
+  <label>Progress (0–100):<br/>
+    <input type="number" name="progress" min="0" max="100" required>
+  </label><br/><br/>
+
+  <button type="submit">Add Entry</button>
+</form>
+
+<hr/>
+
+<h3>Your Entries</h3>
+
+<% if (entries && entries.length > 0) { %>
+  <ul>
+    <% entries.forEach(entry => { %>
+      <li>
+        <strong><%= new Date(entry.date).toLocaleDateString() %></strong>:
+        <%= entry.progress %>% — <%= entry.note %>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>No entries yet.</p>
+<% } %>
+
+<hr/>
+
+<h3>Stats</h3>
+<p>Total entries: <%= entries.length %></p>
+<%
+  let total = 0;
+  let avg = 0;
+  let remaining = 100;
+  if (entries.length > 0) {
+    total = entries.reduce((sum, e) => sum + e.progress, 0);
+    avg = (total / entries.length).toFixed(1);
+    remaining = Math.max(0, 100 - total);
+  }
+%>
+<p>Average progress: <%= avg %>%</p>
+<p>Remaining: <%= remaining %>%</p>
+
+<% if (total >= 100) { %>
+  <p style="color: green; font-weight: bold;">Challenge completed!!</p>
+<% } %>
+<p>
+  <a href="/challenges/<%= challenge._id %>/edit">Edit</a> |
+  <form action="/challenges/<%= challenge._id %>?_method=DELETE" method="POST" style="display:inline;">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button onclick="return confirm('Are you sure?')">Delete</button>
+  </form>
+</p>
