@@ -1,0 +1,31 @@
+<h2>New Challenge</h2>
+
+<form action="/challenges" method="POST">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+  <label
+    >Title:<br />
+    <input type="text" name="title" required /> </label
+  ><br />
+
+  <label
+    >Description:<br />
+    <textarea name="description"></textarea></label
+  ><br />
+
+  <label
+    >Start Date:<br />
+    <input type="date" name="startDate" required /> </label
+  ><br />
+
+  <label
+    >End Date:<br />
+    <input type="date" name="endDate" required /> </label
+  ><br />
+
+  <label>
+    <input type="checkbox" name="isPublic" />
+    Make this challenge public </label
+  ><br /><br />
+
+  <button type="submit">Create Challenge</button>
+</form>
