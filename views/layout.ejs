@@ -10,7 +10,7 @@
   <header>
     <h1><a href="/challenges">Challenge Tracker</a></h1>
     <% if (user) { %>
-      <p>Welcome, <%= user.name %> | 
+      <p>Welcome, <%= user.name %>! 
         <form action="/logout" method="POST" style="display:inline;">
           <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           <button>Logout</button>
