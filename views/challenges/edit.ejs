@@ -1,0 +1,43 @@
+<h2>Edit Challenge</h2>
+
+<form action="/challenges/<%= challenge._id %>?_method=PUT" method="POST">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+  <label
+    >Title:<br />
+    <input
+      type="text"
+      name="title"
+      value="<%= challenge.title %>"
+      required /> </label
+  ><br />
+
+  <label
+    >Description:<br />
+    <textarea name="description"><%= challenge.description %></textarea></label
+  ><br />
+
+  <label
+    >Start Date:<br />
+    <input
+      type="date"
+      name="startDate"
+      value="<%= challenge.startDate.toISOString().substring(0,10) %>"
+      required /> </label
+  ><br />
+
+  <label
+    >End Date:<br />
+    <input
+      type="date"
+      name="endDate"
+      value="<%= challenge.endDate.toISOString().substring(0,10) %>"
+      required /> </label
+  ><br />
+
+  <label>
+    <input type="checkbox" name="isPublic" <%= challenge.isPublic ? 'checked' :
+    '' %> /> Make this challenge public </label
+  ><br /><br />
+
+  <button type="submit">Update Challenge</button>
+</form>
