@@ -55,7 +55,6 @@ MONGO_URI=your_mongodb_connection_string
 SESSION_SECRET=your_secret_key
 ```
 
-## 🙋‍♀️ Author
+## Author
 
-Made by Aleksandr Bogomolov
-LinkedIn: [\[linkedin\]](https://www.linkedin.com/in/1alexbogomolov/)
+Made by Aleksandr Bogomolov [\[linkedin\]](https://www.linkedin.com/in/1alexbogomolov/)
