@@ -32,18 +32,23 @@ A full-featured server-rendered web application that allows users to create, man
 ```
 nodejs-final-project/
 │
-├── controllers/        # Route handlers (auth, challenges, entries)
-├── middleware/         # Auth and flash middleware
-├── models/             # Mongoose schemas (User, Challenge, Entry)
-├── public/             # Static files (CSS)
-├── routes/             # Express routers
-├── views/              # EJS templates
-│   └── layouts/        # Base layout
-├── .env.example        # Sample env file
-├── .gitignore
-├── app.js              # App entry point
+├── controllers/         # Business logic (auth, challenges, entries)
+├── middleware/          # Custom middleware (auth, flash)
+├── models/              # Mongoose models (User, Challenge, Entry)
+├── node_modules/
+├── passport/            # Passport configuration
+├── public/              # Static assets (style.css)
+├── routes/              # Express routers
+├── views/               # EJS templates
+│   ├── auth/            # Login and registration views
+│   ├── challenges/      # Challenge CRUD and detail views
+│   └── public/          # Public challenge list
+├── .env                 # Environment variables (not committed)
+├── .gitignore           # Ignored files and folders
+├── app.js               # Main app file
 ├── package.json
-└── README.md
+├── package-lock.json
+└── README.md            # Project documentation
 ```
 
 ## Environment Variables
