@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Challenge Tracker</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/challenges">Challenge Tracker</a></h1>
+    <% if (user) { %>
+      <p>Welcome, <%= user.name %> | 
+        <form action="/logout" method="POST" style="display:inline;">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button>Logout</button>
+        </form>
+      </p>
+    <% } else { %>
+      <p><a href="/login">Login</a> | <a href="/register">Register</a></p>
+    <% } %>
+    <hr>
+  </header>
+
+  <% if (success) { %><div class="flash success"><%= success %></div><% } %>
+  <% if (error) { %><div class="flash error"><%= error %></div><% } %>
+
+  <main>
+    <%- body %>
+  </main>
+
+  <footer><hr><p>&copy; <%= new Date().getFullYear() %> Challenge Tracker</p></footer>
+</body>
+</html>
