@@ -1,0 +1,19 @@
+<h2>Public Challenges</h2>
+
+<ul>
+  <% challenges.forEach(c => { %>
+  <li>
+    <strong><%= c.title %></strong><br />
+    <%= c.description %><br />
+    <small>By: <%= c.owner.name %></small><br />
+    <small
+      ><%= c.startDate.toDateString() %> — <%= c.endDate.toDateString()
+      %></small
+    >
+  </li>
+  <% }) %>
+</ul>
+
+<% if (challenges.length === 0) { %>
+<p>No public challenges found.</p>
+<% } %>
